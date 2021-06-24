@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import CardBasic from "../Ui/CardBasic";
 
@@ -8,6 +8,9 @@ import CardBasic from "../Ui/CardBasic";
  * @class
  */
 const AddUser = () => {
+  const [enteredName, setEnteredName] = useState("");
+  const [enteredAge, setEnteredAge] = useState("");
+
   /**
    * Form Handler for when a user is added
    *
@@ -15,7 +18,27 @@ const AddUser = () => {
    */
   const formSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
-    console.log(event);
+    console.log(enteredName, enteredAge);
+    setEnteredName("");
+    setEnteredAge("");
+  };
+
+  /**
+   * Input Handler for when name changes
+   *
+   * @param {ChangeEvent<HTMLInputElement>} event event from input
+   */
+  const nameChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setEnteredName(event.target.value);
+  };
+
+  /**
+   * Input Handler for when age changes
+   *
+   * @param {ChangeEvent<HTMLInputElement>} event event from input
+   */
+  const ageChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setEnteredAge(event.target.value);
   };
 
   return (
@@ -23,11 +46,21 @@ const AddUser = () => {
       <Form onSubmit={formSubmitHandler}>
         <Form.Group controlId="formName">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter name" />
+          <Form.Control
+            type="text"
+            placeholder="Enter name"
+            onChange={nameChangeHandler}
+            value={enteredName}
+          />
         </Form.Group>
         <Form.Group controlId="formAge">
           <Form.Label>Age</Form.Label>
-          <Form.Control type="number" placeholder="Enter age" />
+          <Form.Control
+            type="number"
+            placeholder="Enter age"
+            onChange={ageChangeHandler}
+            value={enteredAge}
+          />
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit
