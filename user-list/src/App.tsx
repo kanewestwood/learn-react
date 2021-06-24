@@ -1,4 +1,5 @@
 import React from "react";
+import AddUser from "./components/User/AddUser";
 
 /**
  * @returns {React.ReactElement} Main App
@@ -6,7 +7,7 @@ import React from "react";
 function App() {
   return (
     <div>
-      <h1>App</h1>
+      <AddUser />
     </div>
   );
 }
