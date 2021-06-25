@@ -5,9 +5,11 @@ import CardBasic from "../Ui/CardBasic";
 /**
  * Add User Component
  *
+ * @param {object} props props for component
+ * @param {Function} props.onAddUser onAddUser function
  * @class
  */
-const AddUser = () => {
+const AddUser = (props: { onAddUser: (name: string, age: string) => void }) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
 
@@ -24,7 +26,7 @@ const AddUser = () => {
     if (+enteredAge < 1) {
       return;
     }
-    console.log(enteredName, enteredAge);
+    props.onAddUser(enteredName, enteredAge);
     setEnteredName("");
     setEnteredAge("");
   };
